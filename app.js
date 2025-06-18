@@ -71,10 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     };
                     updateCount();
+                    // Cesser d'observer le compteur une fois animé
+                    observer.unobserve(counter);
                 }
 
-                // Cesser d'observer une fois l'animation jouée
-                if(!entry.target.classList.contains('counter')){
+                // Cesser d'observer les sections une fois l'animation jouée
+                if(entry.target.classList.contains('fade-in')){
                     observer.unobserve(entry.target);
                 }
             }
