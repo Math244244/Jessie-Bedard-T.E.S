@@ -51,32 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Animation pour le fade-in général
                 if (entry.target.classList.contains('fade-in')) {
                     entry.target.classList.add('visible');
-                }
-                
-                // Animation pour les compteurs de statistiques
-                if (entry.target.classList.contains('counter')) {
-                    const counter = entry.target;
-                    const target = +counter.getAttribute('data-target');
-                    let count = 0;
-                    const speed = 20; // Plus le chiffre est petit, plus c'est rapide
-
-                    const updateCount = () => {
-                        const increment = target / (1000 / speed);
-                        if (count < target) {
-                            count += increment;
-                            counter.innerText = Math.ceil(count);
-                            setTimeout(updateCount, speed);
-                        } else {
-                            counter.innerText = target;
-                        }
-                    };
-                    updateCount();
-                    // Cesser d'observer le compteur une fois animé
-                    observer.unobserve(counter);
-                }
-
-                // Cesser d'observer les sections une fois l'animation jouée
-                if(entry.target.classList.contains('fade-in')){
                     observer.unobserve(entry.target);
                 }
             }
@@ -87,7 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeInSections = document.querySelectorAll('.fade-in');
     fadeInSections.forEach(section => observer.observe(section));
 
-    // Observer les compteurs pour l'animation des chiffres
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => observer.observe(counter));
 });
