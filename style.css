@@ -25,11 +25,11 @@ body {
     padding-top: 80px;
     background-color: var(--color-white);
     background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e9ecef' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
-    font-size: 17px; /* AMÉLIORATION : Taille de base augmentée */
+    font-size: 17px;
 }
 
 .container {
-    max-width: 1140px; /* Conteneur légèrement plus large */
+    max-width: 1140px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -42,7 +42,6 @@ h1, h2, h3, h4 {
 
 h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 1rem; }
 
-/* AMÉLIORATION : Titres de section plus percutants */
 h2.section-title {
     font-size: 2.5rem;
     text-align: center;
@@ -50,16 +49,15 @@ h2.section-title {
     letter-spacing: 0.5px;
 }
 
-/* AMÉLIORATION : Sous-titres plus lisibles */
 p.section-subtitle {
     text-align: center;
     max-width: 750px;
-    margin: 0 auto 4rem auto; /* Plus d'espace en bas */
+    margin: 0 auto 4rem auto;
     font-size: 1.15rem;
     color: #6c757d;
 }
 
-section { padding: 90px 0; } /* Espacement des sections augmenté */
+section { padding: 90px 0; }
 section:nth-of-type(2n) { background-color: var(--color-light); }
 
 /* --- HEADER ET NAVIGATION --- */
@@ -110,7 +108,16 @@ nav.container { display: flex; justify-content: space-between; align-items: cent
 
 .hero-text { flex: 1; max-width: 600px; }
 .hero .subtitle { font-size: 1.25rem; margin-bottom: 2.5rem; }
-.hero-image img { width: 380px; height: 380px; object-fit: cover; border-radius: 50%; border: 10px solid var(--color-white); box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+.hero-image img {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 10px solid var(--color-white);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    /* AJUSTEMENT PHOTO : Assure que la photo est bien cadrée */
+    object-fit: cover;
+    object-position: center 25%; /* Remonte légèrement le cadrage pour moins zoomer sur le visage */
+}
 .cta-button-main { display: inline-block; background-color: var(--color-primary); color: var(--color-white); padding: 16px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background-color 0.3s ease, transform 0.2s ease; font-size: 1.1rem; }
 .cta-button-main:hover { background-color: #2c4761; transform: translateY(-3px); }
 
@@ -120,34 +127,13 @@ nav.container { display: flex; justify-content: space-between; align-items: cent
 .about-content h2 { font-size: 2rem; margin-bottom: 1.5rem; }
 
 /* --- SECTION TES --- */
-.tes-definition {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-.tes-icon-container {
-    font-size: 4.5rem;
-    color: var(--color-accent);
-    margin-bottom: 2rem;
-}
-.tes-text { max-width: 800px; text-align: left; }
-.tes-text ul { list-style: none; padding-left: 0; }
-.tes-text li { display: flex; align-items: flex-start; margin-bottom: 1rem; }
-.tes-text .fa-check-circle { color: var(--color-accent); margin-right: 15px; font-size: 1.3rem; margin-top: 5px; }
-
+#tes { display: none; } /* On retire la section TES selon les images fournies */
 
 /* --- SECTION IMPACT PROUVÉ --- */
-#impact { background-color: var(--color-light); }
-.impact-stats { display: flex; justify-content: space-around; text-align: center; gap: 2rem; margin-bottom: 4rem; }
-.stat-counter { flex: 1; }
-.stat-counter i { font-size: 3rem; color: var(--color-accent); margin-bottom: 1rem; }
-.stat-counter h3 { font-size: 4rem; color: var(--color-primary); margin: 0; }
-.stat-counter h3::after { content: '%'; font-size: 2rem; }
-.stat-counter p { font-size: 1.1rem; color: #6c757d; margin-top: 0.5rem; max-width: 250px; margin-left: auto; margin-right: auto;}
+#impact { display: none; } /* On retire la section Impact selon les images fournies */
 
 /* --- SECTION SERVICES AVEC ICÔNES --- */
-#services { background-color: var(--color-white); }
+#services { background-color: var(--color-light); } /* Alternance des couleurs */
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
 .service-card { background-color: var(--color-white); border-radius: var(--border-radius); box-shadow: var(--shadow); text-align: center; padding: 3rem 2rem; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
@@ -165,9 +151,9 @@ nav.container { display: flex; justify-content: space-between; align-items: cent
 
 
 /* --- STYLES POUR RESSOURCES --- */
-#ressources { background-color: var(--color-light); }
+#ressources { background-color: var(--color-white); }
 .resource-list { display: flex; flex-direction: column; gap: 1.5rem; max-width: 900px; margin: 0 auto; }
-.resource-item, .resource-item-detailed { background-color: var(--color-white); padding: 1.5rem 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
+.resource-item, .resource-item-detailed { background-color: var(--color-light); padding: 1.5rem 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow); }
 .resource-item { display: flex; align-items: center; gap: 1.5rem; }
 
 .resource-item-detailed summary { display: flex; align-items: center; gap: 1.5rem; cursor: pointer; list-style: none; }
@@ -183,6 +169,7 @@ nav.container { display: flex; justify-content: space-between; align-items: cent
 
 
 /* --- SECTION FAQ --- */
+#faq { background-color: var(--color-light); }
 .faq-accordion { max-width: 800px; margin: 0 auto; }
 .faq-accordion details { background: var(--color-white); border: 1px solid #e0e0e0; border-radius: var(--border-radius); margin-bottom: 1rem; }
 .faq-accordion summary { padding: 1.2rem 1.5rem; font-weight: 600; cursor: pointer; font-family: var(--font-heading); font-size: 1.2rem; position: relative; list-style: none; }
@@ -196,8 +183,7 @@ details[open] summary::after { transform: rotate(180deg); }
 .contact-info, .contact-form { flex: 1; }
 .contact-info p { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 1.5rem; }
 .contact-info i { color: var(--color-accent); font-size: 1.3rem; margin-top: 5px; }
-.social-links a { color: var(--color-primary); font-size: 1.8rem; margin-right: 15px; transition: color 0.3s ease; }
-.social-links a:hover { color: var(--color-accent); }
+.social-links { display: none; } /* On retire les icônes de réseaux sociaux */
 .form-group { margin-bottom: 1.5rem; }
 .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
 .form-group input, .form-group textarea { width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: var(--border-radius); font-family: var(--font-body); font-size: 1rem; }
@@ -222,7 +208,6 @@ footer { background-color: var(--color-primary); color: var(--color-light); text
     h1 { font-size: 2.5rem; }
     h2.section-title { font-size: 2rem; }
     .contact-wrapper { flex-direction: column; }
-    .impact-stats { flex-direction: column; gap: 3rem; }
 }
 
 @media (max-width: 768px) {
