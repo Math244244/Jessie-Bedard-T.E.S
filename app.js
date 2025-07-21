@@ -1,64 +1,122 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- GESTION DU MENU HAMBURGER POUR MOBILE ---
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const navLinkItems = document.querySelectorAll('.nav-links li a');
-
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = hamburger.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+    // --- INITIALISATION DES ANIMATIONS AU DÉFILEMENT ---
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 50,
     });
 
-    navLinkItems.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                const icon = hamburger.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+    // --- GESTION DU MENU MOBILE ---
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinksInMenu = navMenu.querySelectorAll('.nav-link');
+
+    hamburger.addEventListener('click', () => {
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !isExpanded);
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+
+    const closeMenu = () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    };
+
+    navLinksInMenu.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // --- GESTION DE LA FAQ ACCORDÉON ---
+    const faqItems = document.querySelectorAll('.faq-item-box');
+    faqItems.forEach(item => {
+        item.addEventListener('toggle', (event) => {
+            if (item.open) {
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.open) {
+                        otherItem.open = false;
+                    }
+                });
             }
         });
     });
+
+    // --- GESTION DE L'ACCORDÉON DES PROBLÉMATIQUES ---
+    const issueCards = document.querySelectorAll('.issue-card');
+    issueCards.forEach(card => {
+        card.addEventListener('toggle', (event) => {
+            // Si la carte vient de s'ouvrir
+            if (card.open) {
+                // Ferme toutes les autres cartes
+                issueCards.forEach(otherCard => {
+                    if (otherCard !== card && otherCard.open) {
+                        otherCard.open = false;
+                    }
+                });
+            }
+        });
+    });
+
+
+    // --- SURBRillance du lien de navigation actif AU DÉFILEMENT ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links .nav-link:not(.nav-cta)');
+
+    const updateActiveLink = () => {
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 150) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
 
     // --- GESTION DU BOUTON "RETOUR EN HAUT" ---
     const backToTopButton = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
-    });
-    
-    // --- GESTION DES ANIMATIONS AU DÉFILEMENT (INTERSECTION OBSERVER) ---
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Animation pour le fade-in général
-                if (entry.target.classList.contains('fade-in')) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.opacity = '1';
+                backToTopButton.style.visibility = 'visible';
+            } else {
+                backToTopButton.style.opacity = '0';
+                backToTopButton.style.visibility = 'hidden';
             }
         });
-    }, observerOptions);
+    }
 
-    // Observer les sections pour le fade-in
-    const fadeInSections = document.querySelectorAll('.fade-in');
-    fadeInSections.forEach(section => observer.observe(section));
-
+    // --- GESTION DU CARROUSEL DE TÉMOIGNAGES (SWIPER) ---
+    if (typeof Swiper !== 'undefined') {
+        const swiper = new Swiper('.testimonial-slider', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 7000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    }
 });
