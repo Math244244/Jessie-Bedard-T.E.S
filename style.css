@@ -33,7 +33,7 @@
 
 /* --- RESET & BASE --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; overflow-x: hidden; }
 
 body {
     font-family: var(--font-body);
@@ -197,6 +197,7 @@ nav.container {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    min-width: 0;
 }
 .logo {
     font-family: var(--font-heading);
@@ -206,6 +207,9 @@ nav.container {
     text-decoration: none;
     white-space: nowrap;
     transition: var(--transition);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .logo:hover { color: var(--color-accent); }
 .nav-links {
@@ -255,6 +259,7 @@ nav.container {
     cursor: pointer;
     z-index: 1001;
     padding: 8px;
+    flex-shrink: 0;
 }
 
 /* =============================================
@@ -1955,12 +1960,16 @@ section {
     header { height: 70px; }
     section { padding: 60px 0; }
 
+    /* Logo réduit sur mobile pour laisser place au hamburger */
+    .logo { font-size: 1.15rem; }
+
     .nav-links { display: none; }
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 300px;
+        width: 280px;
+        max-width: 80vw;
         height: 100vh;
         background-color: var(--color-light);
         box-shadow: var(--shadow-lg);
@@ -2078,6 +2087,9 @@ section {
     h2.section-title { font-size: 1.6rem; }
     section { padding: 50px 0; }
 
+    /* Logo encore plus petit sur très petit écran */
+    .logo { font-size: 1.05rem; }
+
     .service-card, .credential-card, .services-preview-card { padding: 2rem 1.5rem; }
 
     /* Bande de confiance : 2 colonnes compact */
@@ -2087,8 +2099,24 @@ section {
     /* Hero plus compact */
     .hero { padding: 30px 0 40px; }
     .hero-image-container { max-width: 220px; }
+    .hero-image-container::before,
+    .hero-image-container::after { display: none; }
     .hero-subtitle { font-size: 0.75rem; padding: 5px 12px; }
     .hero-text .subtitle { font-size: 1rem; }
+
+    /* Masquer les décorations (cercles) qui débordent sur petit écran */
+    .hero::before,
+    .hero::after,
+    .section-decorated::before,
+    .section-decorated::after,
+    .page-banner::before,
+    .page-banner::after,
+    .cta-band::before,
+    .cta-band::after,
+    .philosophy-punch::before,
+    .philosophy-punch::after {
+        display: none;
+    }
 
     /* Contact cards */
     .contact-card-main { padding: 2rem 1.5rem; }
