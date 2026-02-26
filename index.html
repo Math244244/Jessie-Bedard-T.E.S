@@ -21,6 +21,15 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
 
+    <!-- Google Analytics 4 (gtag.js) — Méthode standard et fiable -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF8XNMFQXV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WF8XNMFQXV');
+    </script>
+
     <!-- Données structurées JSON-LD -->
     <script type="application/ld+json">
     {
@@ -241,7 +250,7 @@
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js" defer></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
     <script src="app.js" defer></script>
-    <!-- Firebase Analytics -->
-    <script type="module" src="firebase-init.js"></script>
+    <!-- Événements personnalisés Google Analytics -->
+    <script src="firebase-init.js" defer></script>
 </body>
 </html>
