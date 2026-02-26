@@ -4,39 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Jessie Bédard - Éducatrice Spécialisée | Soutien familial et scolaire</title>
-    <meta name="description" content="Éducatrice spécialisée à Québec. J'offre un soutien humain et personnalisé pour les enfants (TSA, TDAH, anxiété) et leurs familles.">
+    <title>Jessie Bédard, T.E.S. — Éducatrice Spécialisée à Québec</title>
+    <meta name="description" content="Éducatrice spécialisée à Québec. J'offre un soutien humain et personnalisé pour les enfants (TSA, TDAH, anxiété) et leurs familles. Accompagnement individuel et coaching parental.">
     
-    <meta property="og:title" content="Jessie Bédard - Éducatrice Spécialisée | Soutien familial et scolaire">
-    <meta property="og:description" content="Accompagnement spécialisé pour les défis d'apprentissage et de comportement.">
+    <meta property="og:title" content="Jessie Bédard — Éducatrice Spécialisée | Soutien familial et scolaire">
+    <meta property="og:description" content="Accompagnement spécialisé pour les défis d'apprentissage et de comportement à Québec.">
     <meta property="og:image" content="jessie.png">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#2c3e50">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@300;400;500&display=swap">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@300;400;500;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
     <link rel="stylesheet" href="style.css">
+
+    <!-- Données structurées JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Jessie Bédard, T.E.S.",
+        "description": "Éducatrice spécialisée offrant un accompagnement individuel et du coaching parental à Québec.",
+        "url": "https://jessie-tes.web.app",
+        "areaServed": "Québec, Canada",
+        "priceRange": "100$-125$",
+        "serviceType": ["Accompagnement individuel", "Coaching parental"]
+    }
+    </script>
 </head>
 <body>
 
+    <!-- ====== HEADER / NAVIGATION ====== -->
     <header>
         <nav class="container">
-            <a href="#accueil" class="logo">Jessie Bédard, T.E.S.</a>
+            <a href="index.html" class="logo">Jessie Bédard, T.E.S.</a>
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-links">
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#a-propos" class="nav-link">Qui suis-je</a></li>
-                    <li><a href="#processus" class="nav-link">Démarche</a></li>
-                    <li><a href="#ressources" class="nav-link">Ressources</a></li>
-                    <li><a href="#temoignages" class="nav-link">Témoignages</a></li>
-                    <li><a href="#faq" class="nav-link">FAQ</a></li>
-                    <li><a href="#contact" class="nav-link cta cta-primary nav-cta">Contact</a></li>
+                    <li><a href="index.html" class="nav-link active">Accueil</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="a-propos.html" class="nav-link">Qui suis-je</a></li>
+                    <li><a href="ressources.html" class="nav-link">Ressources</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link cta cta-primary nav-cta">Contact</a></li>
                 </ul>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
@@ -46,181 +58,129 @@
     </header>
 
     <main>
-        <section id="accueil" class="hero">
+        <!-- ====== HERO ====== -->
+        <section class="hero">
             <div class="hero-content container">
                 <div class="hero-text" data-aos="fade-right">
-                    <!-- MODIFICATION APPLIQUÉE : "Technicienne en" a été retiré -->
-                    <span class="hero-subtitle">Éducatrice spécialisée</span>
-                    <h1>Soutenir chaque enfant, un pas à la fois.</h1>
+                    <span class="hero-subtitle">Éducatrice spécialisée à Québec</span>
+                    <h1>Soutenir chaque enfant, <span class="text-accent">un pas à la fois.</span></h1>
                     <p class="subtitle">Mon approche est humaine, bienveillante et créative, ancrée dans le moment présent pour accompagner votre enfant vers son plein potentiel, en étroite collaboration avec vous, les parents.</p>
-                    <a href="#contact" class="cta cta-primary cta-large">Prendre rendez-vous</a>
-                </div>
-                <div class="hero-image-container" data-aos="fade-left" data-aos-delay="200">
-                    <img src="jessie.png" alt="Portrait professionnel de Jessie Bédard" class="hero-image" loading="lazy">
-                </div>
-            </div>
-        </section>
-        
-        <div class="section-separator">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path></svg>
-        </div>
-
-        <section id="services">
-            <div class="container" data-aos="fade-up">
-                <h2 class="section-title">Des Services Adaptés à Votre Réalité</h2>
-                <div class="main-services-grid">
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                        <i class="fa-solid fa-child service-icon"></i>
-                        <h3>Accompagnement Individuel</h3>
-                        <p>Un suivi personnalisé et direct avec l'enfant, à domicile, pour travailler des objectifs ciblés à travers des activités ludiques et structurées.</p>
-                    </div>
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                        <i class="fa-solid fa-users service-icon"></i>
-                        <h3>Coaching Parental</h3>
-                        <p>Des outils concrets et des stratégies éprouvées pour vous aider, parents, à instaurer des routines efficaces et gérer les crises.</p>
-                    </div>
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                        <span class="badge-avenir">À venir</span>
-                        <i class="fa-solid fa-chalkboard-user service-icon"></i>
-                        <h3>Ateliers et Formations</h3>
-                        <p>Des ateliers thématiques en petits groupes pour les enfants ou des formations pour les parents sur des sujets précis.</p>
-                    </div>
-                </div>
-
-                <h3 class="subsection-title" data-aos="fade-up">Pour quels défis ?</h3>
-                <p class="section-subtitle" data-aos="fade-up">Cliquez sur un thème pour voir comment je peux vous aider.</p>
-
-                <div class="issues-grid">
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="100">
-                        <summary>
-                            <i class="fas fa-book-open issue-icon"></i>
-                            <h4 class="issue-title">Apprentissages</h4>
-                        </summary>
-                        <p class="issue-description">Difficultés scolaires, devoirs, leçons, ou simplement pour développer des méthodes de travail efficaces.</p>
-                    </details>
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="150">
-                        <summary>
-                            <i class="fas fa-brain issue-icon"></i>
-                            <h4 class="issue-title">Gestion des émotions</h4>
-                        </summary>
-                        <p class="issue-description">Anxiété, colère, tristesse... Apprendre à reconnaître, nommer et gérer ce qui se passe à l'intérieur.</p>
-                    </details>
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="200">
-                        <summary>
-                            <i class="fas fa-people-arrows issue-icon"></i>
-                            <h4 class="issue-title">Relations sociales</h4>
-                        </summary>
-                        <p class="issue-description">Se faire des amis, gérer les conflits, comprendre les codes sociaux, savoir comment agir en groupe.</p>
-                    </details>
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="250">
-                        <summary>
-                            <i class="fas fa-tasks issue-icon"></i>
-                            <h4 class="issue-title">Routines & Organisation</h4>
-                        </summary>
-                        <p class="issue-description">Les matins, les soirs, les devoirs... Mettre en place des routines fluides pour un quotidien apaisé.</p>
-                    </details>
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="100">
-                        <summary>
-                            <i class="fas fa-puzzle-piece issue-icon"></i>
-                            <h4 class="issue-title">Comprendre un diagnostic</h4>
-                        </summary>
-                        <p class="issue-description">Mettre des mots sur un diagnostic (TDAH, TSA, etc.) et développer des outils adaptés à cette réalité.</p>
-                    </details>
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="150">
-                        <summary>
-                            <i class="fas fa-mobile-alt issue-icon"></i>
-                            <h4 class="issue-title">Gestion des écrans</h4>
-                        </summary>
-                        <p class="issue-description">Trouver un équilibre sain et poser des limites claires face aux écrans, sans conflit constant.</p>
-                    </details>
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="200">
-                        <summary>
-                            <i class="fas fa-gavel issue-icon"></i>
-                            <h4 class="issue-title">Respect des règles</h4>
-                        </summary>
-                        <p class="issue-description">Difficultés à suivre les consignes, opposition... Instaurer un cadre clair et bienveillant.</p>
-                    </details>
-                    <details class="issue-card" data-aos="zoom-in" data-aos-delay="250">
-                        <summary>
-                            <i class="fas fa-comment-slash issue-icon"></i>
-                            <h4 class="issue-title">Gestion des crises</h4>
-                        </summary>
-                        <p class="issue-description">Désamorcer les crises, comprendre ce qui les déclenche et apprendre à y réagir efficacement.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-        
-        <section id="a-propos">
-            <div class="container about-content" data-aos="fade-up">
-                <h2 class="section-title">Mon parcours, ma mission</h2>
-                <div class="about-text">
-                    <p>Forte de mon expérience comme éducatrice spécialisée en milieu scolaire depuis 2009, j'ai eu le privilège d'accompagner des dizaines d'enfants faisant face à divers défis d'adaptation, d'apprentissage ou de comportement.</p>
-                    <p class="highlight">Cette expérience m'a convaincue d'une chose : <strong>chaque enfant possède une lumière unique qui ne demande qu'à briller.</strong> Mon rôle est de l'aider à trouver l'interrupteur.</p>
-                    <p>C'est pourquoi j'ai créé ce service de proximité : pour offrir aux families un soutien direct, concret et profondément humain, loin de l'approche universelle. Ma philosophie est simple :</p>
-                    <div class="philosophy-punch">
-                        <p>Je ne vois pas un diagnostic, <strong>je vois un enfant.</strong></p>
-                        <p>Je ne vois pas un problème, <strong>je vois une occasion d'apprendre et de grandir.</strong></p>
-                    </div>
-                    <p>Ensemble, nous créerons un plan d'action qui respecte le rythme, la personnalité et les forces de votre enfant.</p>
-                </div>
-                <div class="credentials">
-                    <div class="credential-card" data-aos="zoom-in" data-aos-delay="100"><i class="fa-solid fa-child-reaching"></i><h4>Clientèles</h4><p>Enfants (5-12 ans), Familles</p></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="processus" class="how-it-works">
-            <div class="container" data-aos="fade-up">
-                <h2 class="section-title">Ma démarche en 3 étapes</h2>
-                <div class="process-steps">
-                    <div class="step" data-aos="fade-right"><div class="step-number">1</div><div class="step-content"><h3>Rencontre initiale</h3><p>Nous faisons le tour de la situation qui vous préoccupe afin de faire ressortir le besoin prioritaire à travailler. Une cueillette d'information est réalisée afin d'analyser quels moyens seront plus efficaces selon le portrait. Un plan d'action concret s'en suivra.</p></div></div>
-                    <div class="step" data-aos="fade-up" data-aos-delay="100"><div class="step-number">2</div><div class="step-content"><h3>Application du plan d'action</h3><p>Enseignement à travers des activités ludiques et pratiques en contexte réel, élaboration d'outils avec le jeune (ex: scénario social, séquence, liste à cocher...). Rétroaction avec les parents et conseils pour réinvestir.</p></div></div>
-                    <div class="step" data-aos="fade-left" data-aos-delay="200"><div class="step-number">3</div><div class="step-content"><h3>Évaluation de l'atteinte des objectifs</h3><p>Réévaluer ou revoir les moyens si nécessaire, choisir un autre objectif si désiré, référencement au besoin.</p></div></div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="ressources">
-            <div class="container" data-aos="fade-up">
-                <h2 class="section-title">Boîte à Outils pour Parents</h2>
-                <p class="section-subtitle">Des ressources concrètes pour vous donner un coup de pouce au quotidien.</p>
-                <div class="resource-list">
-                    <details class="resource-item-detailed" data-aos="fade-up">
-                        <summary>
-                            <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
-                            <div class="resource-info"><h4>Guide : 5 routines pour des matins sans stress</h4><p>Cliquez ici pour lire le guide complet et transformer vos départs.</p></div>
-                        </summary>
-                        <div class="guide-content">
-                            <p><strong>Introduction :</strong> Le tourbillon du matin peut donner le ton à toute la journée. En structurant cette période avec des routines simples et prévisibles, on offre à l'enfant (et aux parents !) un sentiment de sécurité et de contrôle qui diminue le stress pour tout le monde.</p>
-                            <ol>
-                                <li><strong>La veille au soir, on prépare le terrain.</strong><br>Le secret d'un matin réussi commence la veille. Prenez 10 minutes avec votre enfant pour préparer son sac d'école, choisir ses vêtements et préparer sa boîte à lunch. Cela élimine des décisions et des sources de conflit lorsque le temps presse.</li>
-                                <li><strong>Le réveil en douceur, pas en panique.</strong><br>Évitez les réveils brusques. Essayez un réveil lumineux qui simule le lever du soleil ou mettez une musique douce 5 minutes avant l'heure du lever. Un réveil calme permet au cerveau de passer en douceur du sommeil à l'éveil, réduisant l'irritabilité.</li>
-                                <li><strong>L'ordre des choses, toujours le même (avec un support visuel).</strong><br>Les enfants, surtout ceux ayant des défis d'organisation, fonctionnent mieux quand la séquence est prévisible. Créez un petit tableau simple avec des pictogrammes : 1. Toilette, 2. S'habiller, 3. Déjeuner, 4. Brosser les dents. L'enfant peut ainsi suivre les étapes de façon autonome.</li>
-                                <li><strong>Le coin "Prêt-à-Partir".</strong><br>Désignez un endroit spécifique près de la porte d'entrée (un bac, un crochet, une case) où tout le matériel pour partir doit se trouver : manteau, souliers, tuque, et le sac d'école préparé la veille. Fini la chasse au trésor pour trouver la mitaine manquante !</li>
-                                <li><strong>Le "Check-out" Positif et Connecté.</strong><br>Gardez 2 minutes juste avant de partir, non pas pour courir, mais pour connecter. Un câlin, un mot d'encouragement sincère ("Je suis fier de toi, tu as bien suivi ta routine ce matin !"), un "Je t'aime, passe une belle journée". Ce moment positif met fin à la routine sur une bonne note et remplit le réservoir affectif de l'enfant pour la journée.</li>
-                            </ol>
-                        </div>
-                    </details>
-                    <div class="resource-item-detailed" data-aos="fade-up" data-aos-delay="100">
-                         <!-- MODIFICATION APPLIQUÉE : Lien YouTube corrigé -->
-                         <a href="https://www.youtube.com/watch?v=oZ8toBrVd0Q" target="_blank" rel="noopener noreferrer" class="resource-link-wrapper">
-                            <div class="resource-icon"><i class="fab fa-youtube"></i></div>
-                            <div class="resource-info"><h4>Vidéo : L'anxiété expliquée aux enfants</h4><p>Une ressource de qualité par Naître et grandir. Voir la vidéo.</p></div>
+                    <div class="hero-buttons">
+                        <a href="contact.html" class="cta cta-primary cta-large">
+                            <i class="fas fa-calendar-check"></i> Prendre rendez-vous
+                        </a>
+                        <a href="services.html" class="cta cta-secondary cta-large">
+                            Découvrir mes services
                         </a>
                     </div>
                 </div>
+                <div class="hero-image-container" data-aos="fade-left" data-aos-delay="200">
+                    <img src="jessie.png" alt="Portrait professionnel de Jessie Bédard, éducatrice spécialisée" class="hero-image">
+                </div>
             </div>
         </section>
 
-        <section id="temoignages">
+        <!-- ====== BANDE DE CONFIANCE ====== -->
+        <div class="trust-strip">
+            <div class="container">
+                <div class="trust-grid">
+                    <div class="trust-item" data-aos="fade-up" data-aos-delay="100">
+                        <span class="trust-number" data-count="15">0</span>
+                        <span class="trust-label">Années d'expérience</span>
+                    </div>
+                    <div class="trust-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="trust-number" data-count="5" data-suffix="-12 ans">0</span>
+                        <span class="trust-label">Clientèle cible</span>
+                    </div>
+                    <div class="trust-item" data-aos="fade-up" data-aos-delay="300">
+                        <span class="trust-number" data-count="100" data-suffix="%">0</span>
+                        <span class="trust-label">Personnalisé</span>
+                    </div>
+                    <div class="trust-item" data-aos="fade-up" data-aos-delay="400">
+                        <span class="trust-number" data-text="A.E.E.S.Q">A.E.E.S.Q</span>
+                        <span class="trust-label">Membre certifiée</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== APERÇU DES SERVICES ====== -->
+        <section class="section-alt section-decorated">
+            <div class="container" data-aos="fade-up">
+                <h2 class="section-title">Des services adaptés à votre réalité</h2>
+                <p class="section-subtitle">Un accompagnement sur mesure pour les enfants de 5 à 12 ans et leurs familles.</p>
+                
+                <div class="services-preview-grid">
+                    <div class="services-preview-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fa-solid fa-child"></i>
+                        <h3>Accompagnement individuel</h3>
+                        <p>Un suivi personnalisé avec l'enfant, à domicile, pour travailler des objectifs ciblés à travers des activités ludiques.</p>
+                    </div>
+                    <div class="services-preview-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-solid fa-users"></i>
+                        <h3>Coaching parental</h3>
+                        <p>Des outils concrets et des stratégies éprouvées pour vous aider à instaurer des routines efficaces.</p>
+                    </div>
+                    <a href="services.html#webinaire" class="services-preview-card services-preview-card--link" data-aos="fade-up" data-aos-delay="300">
+                        <span class="badge-new-small">Nouveau</span>
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <h3>Webinaire gratuit : Le TSA</h3>
+                        <p>Mercredi 11 mars, 18h à 18h45. Explications concrètes, outils et ressources pour parents. Inscrivez-vous !</p>
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <a href="services.html" class="cta cta-secondary">
+                        Voir tous les services <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== PHILOSOPHIE (mini section À propos) ====== -->
+        <section class="section-default">
+            <div class="container" data-aos="fade-up">
+                <div class="philosophy-punch" style="max-width: 750px; margin: 0 auto;">
+                    <p>Je ne vois pas un diagnostic, <strong>je vois un enfant.</strong></p>
+                    <p>Je ne vois pas un problème, <strong>je vois une occasion d'apprendre et de grandir.</strong></p>
+                </div>
+                <div class="text-center mt-2">
+                    <a href="a-propos.html" class="cta cta-secondary">
+                        En savoir plus sur mon parcours <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== TÉMOIGNAGES ====== -->
+        <section class="section-alt section-decorated">
             <div class="container" data-aos="fade-up">
                 <h2 class="section-title">Ce que les familles en disent</h2>
-                 <div class="swiper testimonial-slider">
+                <p class="section-subtitle">Des résultats concrets qui font la différence au quotidien.</p>
+                
+                <div class="swiper testimonial-slider">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><div class="testimonial-card"><i class="fa-solid fa-quote-left"></i><p>"L'approche de Jessie est incroyable. Son écoute et ses outils concrets ont fait une réelle différence dans notre quotidien."</p><cite>— Caroline, maman d'un garçon de 8 ans</cite></div></div>
-                        <div class="swiper-slide"><div class="testimonial-card"><i class="fa-solid fa-quote-left"></i><p>"Le coaching parental nous a redonné confiance. Nous avons retrouvé une harmonie familiale qu'on croyait perdue. Merci !"</p><cite>— Martin et Sophie, parents d'une fille de 6 ans</cite></div></div>
-                        <div class="swiper-slide"><div class="testimonial-card"><i class="fa-solid fa-quote-left"></i><p>"Grâce à Jessie, les routines ne sont plus un combat. Son approche structurée et ludique a été la clé pour notre fils qui a un TDAH."</p><cite>— David, papa d'un garçon de 10 ans</cite></div></div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <i class="fa-solid fa-quote-left"></i>
+                                <p>"L'approche de Jessie est incroyable. Son écoute et ses outils concrets ont fait une réelle différence dans notre quotidien."</p>
+                                <cite>— Caroline, maman d'un garçon de 8 ans</cite>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <i class="fa-solid fa-quote-left"></i>
+                                <p>"Le coaching parental nous a redonné confiance. Nous avons retrouvé une harmonie familiale qu'on croyait perdue. Merci !"</p>
+                                <cite>— Martin et Sophie, parents d'une fille de 6 ans</cite>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <i class="fa-solid fa-quote-left"></i>
+                                <p>"Grâce à Jessie, les routines ne sont plus un combat. Son approche structurée et ludique a été la clé pour notre fils qui a un TDAH."</p>
+                                <cite>— David, papa d'un garçon de 10 ans</cite>
+                            </div>
+                        </div>
                     </div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
@@ -229,89 +189,59 @@
             </div>
         </section>
 
-        <section id="faq">
-             <div class="container" data-aos="fade-up">
-                <h2 class="section-title">Vos Questions, Mes Réponses</h2>
-                <div class="faq-container">
-                    <details class="faq-item-box">
-                        <summary class="faq-question-box">Mon enfant a-t-il besoin d’un diagnostic pour consulter ?</summary>
-                        <div class="faq-answer-box">
-                            <p>Non, absolument pas. Mon approche se base sur les défis observés au quotidien, pas sur une étiquette. Si votre enfant vit une difficulté, c'est une raison suffisante pour consulter.</p>
-                        </div>
-                    </details>
-                    <details class="faq-item-box">
-                        <summary class="faq-question-box">Quelle est votre approche pour les enfants qui refusent de collaborer ?</summary>
-                        <div class="faq-answer-box">
-                            <p>C'est une situation fréquente ! La première étape est de bâtir un lien de confiance. J'utilise le jeu et les intérêts de l'enfant pour créer une alliance. Je ne force jamais, je l'invite dans un processus où il se sentira compétent et respecté.</p>
-                        </div>
-                    </details>
-                    <details class="faq-item-box">
-                        <summary class="faq-question-box">Travaillez-vous en collaboration avec l'école et les autres professionnels ?</summary>
-                        <div class="faq-answer-box">
-                            <p>Oui, et c'est la clé du succès. Avec votre autorisation, j'établis une communication fluide avec l'enseignant(e) et les autres intervenants (orthophoniste, psychoéducateur, etc.) pour assurer une cohérence et maximiser l'impact de nos interventions.</p>
-                        </div>
-                    </details>
-                    <details class="faq-item-box" open>
-                        <summary class="faq-question-box">Combien coûte une séance et est-ce couvert par les assurances ?</summary>
-                        <div class="faq-answer-box">
-                            <p>
-                                <strong>Tarifs :</strong><br>
-                                - <strong>125$ :</strong> Rencontre initiale (1h15) à domicile et ouverture de dossier.<br>
-                                - <strong>110$ :</strong> Rencontre initiale (1h15) en ligne et ouverture de dossier.<br>
-                                - Par la suite, un taux horaire de <strong>100$</strong> sera facturé pour les séances de 60 minutes (en présentiel ou en ligne).
-                            </p>
-                            <p>Un reçu pour les assurances ou les impôts vous sera fourni.</p>
-                            <p><em>*Note pour le présentiel : Je me déplace seulement dans les arrondissements de la Haute-St-Charles et Les Rivières.</em></p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
+        <!-- ====== BANDEAU CTA ====== -->
+        <section class="cta-band">
             <div class="container" data-aos="fade-up">
                 <h2 class="section-title">Prêt(e) à faire le premier pas ?</h2>
-                <p class="section-subtitle">
-                    Pour prendre rendez-vous, utilisez mon agenda en ligne. Pour toute autre question, n'hésitez pas à m'envoyer un courriel.
-                </p>
-                
-                <div class="contact-buttons-wrapper">
-                    <a href="https://jade.psylio.com/fr/ca/organizations/jessie-bedard" target="_blank" rel="noopener noreferrer" class="cta cta-primary cta-large">
-                        <i class="fas fa-calendar-check"></i>
-                        <span>Prendre RDV en ligne</span>
-                    </a>
-                    <div class="email-button-group">
-                        <a href="mailto:jbedard_89@hotmail.com?subject=Prise%20de%20contact%20-%20Site%20Web" class="cta cta-secondary cta-large">
-                            <i class="fas fa-envelope"></i>
-                            <span>M'envoyer un courriel</span>
-                        </a>
-                        <p class="email-address-text">jbedard_89@hotmail.com</p>
-                    </div>
-                </div>
-                
-                <p class="contact-note">
-                    Merci d'inclure votre nom et de décrire brièvement la situation dans votre courriel. Je vous répondrai dans les 24 à 48 heures.
-                </p>
-
+                <p>Prenez rendez-vous pour une rencontre initiale et découvrez comment je peux accompagner votre enfant.</p>
+                <a href="contact.html" class="cta cta-light cta-large">
+                    <i class="fas fa-calendar-check"></i> Prendre rendez-vous
+                </a>
             </div>
         </section>
     </main>
-    
+
+    <!-- ====== FOOTER ====== -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-column" data-aos="fade-up"><h4 class="footer-title">Jessie Bédard, T.E.S.</h4><p>Soutenir les familles de Québec vers un quotidien plus harmonieux.</p><div class="footer-badge"><i class="fa-solid fa-award"></i><span>Membre de l'A.E.E.S.Q</span></div></div>
-                <div class="footer-column" data-aos="fade-up" data-aos-delay="100"><h4 class="footer-title">Navigation</h4><ul><li><a href="#services">Services</a></li><li><a href="#a-propos">Qui suis-je</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-                <div class="footer-column" data-aos="fade-up" data-aos-delay="200"><h4 class="footer-title">Contact</h4><p><i class="fas fa-envelope"></i> <a href="mailto:jbedard_89@hotmail.com">jbedard_89@hotmail.com</a></p><p><i class="fas fa-map-marker-alt"></i> Québec (et en ligne)</p></div>
+                <div class="footer-column" data-aos="fade-up">
+                    <h4 class="footer-title">Jessie Bédard, T.E.S.</h4>
+                    <p>Soutenir les familles de Québec vers un quotidien plus harmonieux.</p>
+                    <div class="footer-badge">
+                        <i class="fa-solid fa-award"></i>
+                        <span>Membre de l'A.E.E.S.Q</span>
+                    </div>
+                </div>
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="a-propos.html">Qui suis-je</a></li>
+                        <li><a href="ressources.html">Ressources</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="footer-title">Contact</h4>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:jbedard_89@hotmail.com">jbedard_89@hotmail.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> Québec (Haute-St-Charles, Les Rivières) et en ligne</p>
+                </div>
             </div>
-            <div class="footer-bottom"><p>© 2025 Jessie Bédard, T.E.S. Tous droits réservés.</p></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jessie Bédard, T.E.S. Tous droits réservés.</p>
+            </div>
         </div>
     </footer>
 
-    <a href="#accueil" class="back-to-top" id="back-to-top" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></a>
-    
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Retour en haut"><i class="fas fa-arrow-up"></i></a>
+
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js" defer></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
     <script src="app.js" defer></script>
+    <!-- Firebase Analytics -->
+    <script type="module" src="firebase-init.js"></script>
 </body>
 </html>
