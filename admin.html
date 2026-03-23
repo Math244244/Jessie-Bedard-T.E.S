@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Administration — Jessie Bédard, T.E.S.</title>
+    <link rel="icon" type="image/png" href="Logo Jessie.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Poppins:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --admin-primary: #2c3e50;
+            --admin-secondary: #34495e;
+            --admin-accent: #1abc9c;
+            --admin-accent-hover: #16a085;
+            --admin-bg: #f0f2f5;
+            --admin-card: #ffffff;
+            --admin-border: #e0e6ed;
+            --admin-text: #555;
+            --admin-muted: #7f8c8d;
+            --admin-danger: #e74c3c;
+            --admin-warning: #f39c12;
+            --admin-success: #27ae60;
+            --admin-radius: 12px;
+            --admin-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --admin-font: 'Poppins', sans-serif;
+            --admin-font-heading: 'Lora', serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--admin-font); background: var(--admin-bg); color: var(--admin-text); line-height: 1.6; font-size: 15px; min-height: 100vh; }
+
+        /* ===== LOGIN ===== */
+        #login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%); padding: 20px; }
+        .login-card { background: var(--admin-card); border-radius: var(--admin-radius); box-shadow: 0 20px 60px rgba(0,0,0,0.2); padding: 3rem 2.5rem; max-width: 420px; width: 100%; text-align: center; }
+        .login-logo { height: 80px; margin: 0 auto 1.5rem; display: block; }
+        .login-card h1 { font-family: var(--admin-font-heading); font-size: 1.6rem; color: var(--admin-primary); margin-bottom: 0.5rem; }
+        .login-card > p { color: var(--admin-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+        .login-card input { width: 100%; padding: 14px 16px; border: 2px solid var(--admin-border); border-radius: 8px; font-family: var(--admin-font); font-size: 1rem; margin-bottom: 1rem; transition: border-color 0.3s; outline: none; }
+        .login-card input:focus { border-color: var(--admin-accent); }
+        .login-card button[type="submit"] { width: 100%; padding: 14px; background: var(--admin-accent); color: #fff; border: none; border-radius: 8px; font-family: var(--admin-font); font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .login-card button[type="submit"]:hover { background: var(--admin-accent-hover); transform: translateY(-2px); }
+        .error-msg { color: var(--admin-danger); font-size: 0.9rem; margin-top: 1rem; min-height: 1.4em; }
+
+        /* ===== HEADER ===== */
+        .admin-header { background: var(--admin-primary); color: #fff; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        .admin-header-left { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 1.1rem; }
+        .admin-logo { height: 38px; }
+        .admin-header-right { display: flex; align-items: center; gap: 16px; font-size: 0.9rem; }
+        #admin-email { color: rgba(255,255,255,0.7); }
+        #logout-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: var(--admin-font); font-size: 0.85rem; transition: all 0.3s; }
+        #logout-btn:hover { background: rgba(255,255,255,0.2); }
+
+        /* ===== MAIN ===== */
+        .admin-main { max-width: 900px; margin: 0 auto; padding: 24px; }
+        .admin-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+        .admin-toolbar h2 { font-family: var(--admin-font-heading); font-size: 1.5rem; color: var(--admin-primary); display: flex; align-items: center; gap: 10px; }
+        .admin-toolbar h2 i { color: var(--admin-accent); }
+
+        /* ===== GUIDE RAPIDE ===== */
+        .admin-guide { background: linear-gradient(135deg, #e8f8f5, #f0faf7); border: 1px solid rgba(26,188,156,0.2); border-radius: var(--admin-radius); padding: 1.5rem; margin-bottom: 1.5rem; }
+        .admin-guide-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .admin-guide-header h3 { font-size: 1rem; color: var(--admin-primary); display: flex; align-items: center; gap: 8px; }
+        .admin-guide-header h3 i { color: var(--admin-accent); }
+        .admin-guide-toggle { background: none; border: none; color: var(--admin-muted); cursor: pointer; font-size: 0.9rem; padding: 4px; }
+        .admin-guide-body { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .admin-guide-body.hidden { display: none; }
+        .guide-tip { display: flex; gap: 10px; align-items: flex-start; }
+        .guide-tip i { color: var(--admin-accent); margin-top: 2px; flex-shrink: 0; }
+        .guide-tip p { font-size: 0.85rem; color: var(--admin-text); }
+        .guide-tip strong { color: var(--admin-primary); }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary { background: var(--admin-accent); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-family: var(--admin-font); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary:hover { background: var(--admin-accent-hover); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(26,188,156,0.35); }
+        .btn-secondary { background: transparent; color: var(--admin-text); border: 2px solid var(--admin-border); padding: 10px 22px; border-radius: 8px; font-family: var(--admin-font); font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.3s; }
+        .btn-secondary:hover { border-color: var(--admin-text); }
+        .btn-sm { padding: 6px 14px; font-size: 0.82rem; border-radius: 6px; border: none; cursor: pointer; font-family: var(--admin-font); font-weight: 500; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px; }
+        .btn-edit { background: #eef2f7; color: var(--admin-primary); }
+        .btn-edit:hover { background: #dce3ec; }
+        .btn-duplicate { background: rgba(52,152,219,0.1); color: #2980b9; }
+        .btn-duplicate:hover { background: rgba(52,152,219,0.2); }
+        .btn-toggle { background: rgba(26,188,156,0.1); color: var(--admin-accent); }
+        .btn-toggle:hover { background: rgba(26,188,156,0.2); }
+        .btn-delete { background: rgba(231,76,60,0.08); color: var(--admin-danger); }
+        .btn-delete:hover { background: rgba(231,76,60,0.18); }
+
+        /* ===== STATS ===== */
+        .admin-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--admin-card); border-radius: var(--admin-radius); padding: 1.25rem; text-align: center; box-shadow: var(--admin-shadow); border-top: 3px solid var(--admin-accent); }
+        .stat-number { display: block; font-family: var(--admin-font-heading); font-size: 2rem; font-weight: 600; color: var(--admin-primary); }
+        .stat-label { font-size: 0.85rem; color: var(--admin-muted); }
+
+        /* ===== EVENT LIST ===== */
+        .events-group-title { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--admin-muted); margin: 1.5rem 0 0.75rem; display: flex; align-items: center; gap: 8px; }
+        .events-group-title .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot-upcoming { background: var(--admin-accent); }
+        .dot-past { background: #bdc3c7; }
+
+        .admin-event-card { background: var(--admin-card); border-radius: var(--admin-radius); box-shadow: var(--admin-shadow); padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 1.25rem; transition: all 0.3s; border-left: 4px solid var(--admin-accent); }
+        .admin-event-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .admin-event-card--past { border-left-color: #bdc3c7; opacity: 0.75; }
+        .admin-event-card--past:hover { opacity: 1; }
+        .admin-event-card--vedette { border-left-color: var(--admin-warning); background: linear-gradient(135deg, #fff 0%, #fffdf0 100%); }
+
+        .admin-event-date { text-align: center; min-width: 55px; flex-shrink: 0; }
+        .admin-event-date .day { font-family: var(--admin-font-heading); font-size: 1.5rem; font-weight: 600; color: var(--admin-primary); line-height: 1.1; }
+        .admin-event-date .month { font-size: 0.75rem; text-transform: uppercase; color: var(--admin-muted); letter-spacing: 1px; }
+        .admin-event-info { flex: 1; min-width: 0; }
+        .admin-event-info h4 { font-size: 1rem; color: var(--admin-primary); margin-bottom: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .admin-event-desc { font-size: 0.82rem; color: var(--admin-muted); margin-bottom: 0.35rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 400px; }
+        .admin-event-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+        .admin-badge { display: inline-block; padding: 2px 10px; border-radius: 50px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; }
+        .admin-badge-type { background: #eef2f7; color: var(--admin-primary); }
+        .admin-badge-free { background: rgba(26,188,156,0.1); color: var(--admin-accent); }
+        .admin-badge-new { background: rgba(231,76,60,0.1); color: var(--admin-danger); }
+        .admin-badge-online { background: #e8f4fd; color: #2980b9; }
+        .admin-badge-inperson { background: #fef3e2; color: #e67e22; }
+        .admin-badge-vedette { background: rgba(243,156,18,0.12); color: var(--admin-warning); }
+
+        .admin-event-actions { display: flex; gap: 6px; flex-shrink: 0; }
+        .empty-state { text-align: center; padding: 3rem; color: var(--admin-muted); }
+        .empty-state i { font-size: 3rem; opacity: 0.3; margin-bottom: 1rem; display: block; }
+
+        /* ===== MODAL ===== */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44,62,80,0.6); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
+        .modal-content { background: var(--admin-card); border-radius: var(--admin-radius); box-shadow: 0 20px 60px rgba(0,0,0,0.25); max-width: 650px; width: 100%; animation: modal-in 0.3s ease-out; }
+        @keyframes modal-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 2rem; border-bottom: 1px solid var(--admin-border); }
+        .modal-header h3 { font-family: var(--admin-font-heading); font-size: 1.3rem; color: var(--admin-primary); }
+        .modal-close { background: none; border: none; font-size: 1.2rem; color: var(--admin-muted); cursor: pointer; padding: 4px; transition: color 0.2s; }
+        .modal-close:hover { color: var(--admin-primary); }
+
+        #event-form { padding: 2rem; }
+        .form-section { margin-bottom: 1.75rem; }
+        .form-section-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--admin-accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #eef5f3; padding-bottom: 0.5rem; }
+        .form-row { margin-bottom: 1rem; }
+        .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--admin-primary); margin-bottom: 6px; }
+        .form-group input, .form-group select, .form-group textarea { padding: 10px 14px; border: 2px solid var(--admin-border); border-radius: 8px; font-family: var(--admin-font); font-size: 0.95rem; outline: none; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--admin-accent); }
+        .form-group small { color: var(--admin-muted); font-size: 0.8rem; margin-top: 4px; }
+        .form-group textarea { resize: vertical; }
+
+        .vedette-toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 12px 16px; border: 2px solid var(--admin-border); border-radius: 8px; transition: all 0.3s; user-select: none; }
+        .vedette-toggle:hover { border-color: var(--admin-warning); }
+        .vedette-toggle input { display: none; }
+        .vedette-toggle input:checked + .vedette-label { color: var(--admin-warning); }
+        .vedette-toggle input:checked ~ .vedette-indicator { background: var(--admin-warning); }
+        .vedette-label { font-size: 0.9rem; font-weight: 500; color: var(--admin-text); flex: 1; }
+        .vedette-indicator { width: 40px; height: 22px; border-radius: 50px; background: #ddd; position: relative; transition: background 0.3s; flex-shrink: 0; }
+        .vedette-indicator::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform 0.3s; }
+        .vedette-toggle input:checked ~ .vedette-indicator::after { transform: translateX(18px); }
+
+        .form-actions { display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--admin-border); margin-top: 1.5rem; }
+
+        /* ===== PREVIEW ===== */
+        .form-preview { background: var(--admin-bg); border-radius: 8px; padding: 1rem; margin-top: 1rem; border: 1px dashed var(--admin-border); }
+        .form-preview-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--admin-muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px; }
+        .preview-card { background: var(--admin-card); border-radius: 8px; padding: 1rem; display: flex; gap: 1rem; align-items: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .preview-date { text-align: center; min-width: 50px; background: linear-gradient(135deg, var(--admin-accent), #16a085); color: #fff; border-radius: 8px; padding: 8px 6px; }
+        .preview-date .p-day { font-family: var(--admin-font-heading); font-size: 1.3rem; font-weight: 600; line-height: 1; display: block; }
+        .preview-date .p-month { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+        .preview-body { flex: 1; }
+        .preview-body .p-tag { display: inline-block; padding: 2px 8px; border-radius: 50px; font-size: 0.65rem; font-weight: 600; margin-bottom: 4px; background: rgba(26,188,156,0.1); color: var(--admin-accent); }
+        .preview-body .p-title { font-size: 0.9rem; font-weight: 600; color: var(--admin-primary); margin-bottom: 2px; }
+        .preview-body .p-desc { font-size: 0.78rem; color: var(--admin-muted); }
+        .preview-body .p-meta { font-size: 0.72rem; color: var(--admin-muted); margin-top: 4px; }
+
+        /* ===== TOAST ===== */
+        #toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 10000; display: flex; flex-direction: column; gap: 8px; }
+        .toast { padding: 14px 20px; border-radius: 8px; color: #fff; font-size: 0.9rem; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.2); animation: toast-in 0.3s ease-out; display: flex; align-items: center; gap: 10px; max-width: 350px; }
+        .toast-success { background: var(--admin-success); }
+        .toast-error { background: var(--admin-danger); }
+        @keyframes toast-in { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+
+        .loading { text-align: center; padding: 2rem; color: var(--admin-muted); }
+
+        /* ===== CONFIRM ===== */
+        .confirm-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44,62,80,0.5); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .confirm-card { background: #fff; border-radius: var(--admin-radius); padding: 2rem; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+        .confirm-card h4 { font-family: var(--admin-font-heading); margin-bottom: 0.5rem; color: var(--admin-primary); }
+        .confirm-card p { color: var(--admin-muted); margin-bottom: 1.5rem; }
+        .confirm-actions { display: flex; gap: 1rem; justify-content: center; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .admin-header { padding: 0 16px; }
+            .admin-header-left span { display: none; }
+            #admin-email { display: none; }
+            .admin-main { padding: 16px; }
+            .admin-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+            .stat-card { padding: 1rem 0.5rem; }
+            .stat-number { font-size: 1.5rem; }
+            .admin-event-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .admin-event-actions { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+            .admin-event-info h4, .admin-event-desc { white-space: normal; }
+            .form-row-2, .form-row-3 { grid-template-columns: 1fr; }
+            .modal { padding: 20px 12px; align-items: flex-start; }
+            .modal-content { margin-top: 10px; }
+            #event-form { padding: 1.5rem; }
+            .admin-toolbar { flex-direction: column; align-items: flex-start; }
+            .admin-guide-body { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== CONNEXION ===== -->
+    <div id="login-screen">
+        <div class="login-card">
+            <img src="Logo Jessie.png" alt="Logo Jessie Bédard" class="login-logo">
+            <h1>Espace administration</h1>
+            <p>Connectez-vous pour gérer votre site web.</p>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Adresse courriel" required autocomplete="email">
+                <input type="password" id="login-password" placeholder="Mot de passe" required autocomplete="current-password">
+                <button type="submit"><i class="fas fa-lock"></i> Se connecter</button>
+                <p id="login-error" class="error-msg"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== TABLEAU DE BORD ===== -->
+    <div id="admin-dashboard" style="display:none;">
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <img src="Logo Jessie.png" alt="Logo" class="admin-logo">
+                <span>Administration</span>
+            </div>
+            <div class="admin-header-right">
+                <span id="admin-email"></span>
+                <a href="index.html" style="color:rgba(255,255,255,0.7); font-size:0.85rem;"><i class="fas fa-external-link-alt"></i> Voir le site</a>
+                <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="admin-toolbar">
+                <h2><i class="fas fa-calendar-alt"></i> Gestion des événements</h2>
+                <button id="add-event-btn" class="btn-primary"><i class="fas fa-plus"></i> Ajouter un événement</button>
+            </div>
+
+            <!-- Guide rapide -->
+            <div class="admin-guide" id="admin-guide">
+                <div class="admin-guide-header" id="guide-toggle">
+                    <h3><i class="fas fa-lightbulb"></i> Guide rapide</h3>
+                    <button class="admin-guide-toggle"><i class="fas fa-chevron-down" id="guide-icon"></i></button>
+                </div>
+                <div class="admin-guide-body" id="guide-body">
+                    <div class="guide-tip">
+                        <i class="fas fa-plus-circle"></i>
+                        <p><strong>Ajouter :</strong> Créez un événement avec le bouton vert. Il apparaîtra automatiquement sur le site.</p>
+                    </div>
+                    <div class="guide-tip">
+                        <i class="fas fa-star"></i>
+                        <p><strong>Vedette :</strong> Activez « Mettre en vedette » pour qu'un événement soit mis en avant visuellement.</p>
+                    </div>
+                    <div class="guide-tip">
+                        <i class="fas fa-copy"></i>
+                        <p><strong>Dupliquer :</strong> Copiez un événement existant pour en créer un similaire rapidement.</p>
+                    </div>
+                    <div class="guide-tip">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Terminé :</strong> Marquez un événement passé. Il ira dans l'historique du site.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="stat-upcoming">-</span>
+                    <span class="stat-label">À venir</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="stat-past">-</span>
+                    <span class="stat-label">Terminés</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="stat-total">-</span>
+                    <span class="stat-label">Total</span>
+                </div>
+            </div>
+
+            <div id="events-list">
+                <p class="loading"><i class="fas fa-spinner fa-spin"></i> Chargement des événements...</p>
+            </div>
+        </main>
+
+        <!-- ===== MODAL ===== -->
+        <div id="event-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Ajouter un événement</h3>
+                    <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+                </div>
+                <form id="event-form">
+                    <input type="hidden" id="event-id">
+
+                    <!-- Section : Informations principales -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-info-circle"></i> Informations principales</div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-titre">Titre de l'événement *</label>
+                                <input type="text" id="event-titre" required placeholder="Ex: Devoirs et leçons chez les jeunes à besoins particuliers">
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row-2">
+                            <div class="form-group">
+                                <label for="event-type">Type *</label>
+                                <select id="event-type" required>
+                                    <option value="webinaire">Webinaire (en ligne)</option>
+                                    <option value="atelier">Atelier (en personne)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-etiquette">Étiquette affichée</label>
+                                <select id="event-etiquette">
+                                    <option value="gratuit">Gratuit</option>
+                                    <option value="nouveau">Nouveau</option>
+                                    <option value="">Aucune</option>
+                                </select>
+                                <small>Badge visible sur la carte de l'événement</small>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-description">Description courte</label>
+                                <textarea id="event-description" rows="2" placeholder="Ex: Un webinaire pour mieux accompagner les devoirs de votre enfant." maxlength="300"></textarea>
+                                <small id="desc-counter">0 / 300 caractères</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section : Date et heure -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-calendar"></i> Date et heure</div>
+
+                        <div class="form-row form-row-3">
+                            <div class="form-group">
+                                <label for="event-jour">Jour *</label>
+                                <input type="text" id="event-jour" required placeholder="Ex: 22 ou Été">
+                                <small>Nombre ou texte libre</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-mois-select">Mois *</label>
+                                <select id="event-mois-select">
+                                    <option value="">— Choisir —</option>
+                                    <option value="Janvier">Janvier</option>
+                                    <option value="Février">Février</option>
+                                    <option value="Mars">Mars</option>
+                                    <option value="Avril">Avril</option>
+                                    <option value="Mai">Mai</option>
+                                    <option value="Juin">Juin</option>
+                                    <option value="Juillet">Juillet</option>
+                                    <option value="Août">Août</option>
+                                    <option value="Septembre">Septembre</option>
+                                    <option value="Octobre">Octobre</option>
+                                    <option value="Novembre">Novembre</option>
+                                    <option value="Décembre">Décembre</option>
+                                    <option value="custom">Autre...</option>
+                                </select>
+                                <input type="text" id="event-mois-custom" style="display:none; margin-top:6px;" placeholder="Ex: 2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="event-heure">Heure</label>
+                                <input type="text" id="event-heure" placeholder="Ex: 19h ou 19h30">
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row-2">
+                            <div class="form-group">
+                                <label for="event-format">Format *</label>
+                                <select id="event-format" required>
+                                    <option value="en_ligne">En ligne (virtuel)</option>
+                                    <option value="en_personne">En personne</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-date-tri">Date pour le classement *</label>
+                                <input type="date" id="event-date-tri" required>
+                                <small>Se remplit automatiquement si possible</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section : Contenu additionnel -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-list"></i> Contenu additionnel</div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-liste">Thèmes ou points clés (un par ligne)</label>
+                                <textarea id="event-liste" rows="3" placeholder="Habiletés sociales&#10;Gestion des émotions&#10;Cerveau actif"></textarea>
+                                <small>Optionnel — Idéal pour les ateliers avec plusieurs volets</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section : Affichage -->
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="fas fa-eye"></i> Affichage sur le site</div>
+
+                        <div class="form-row form-row-2">
+                            <div class="form-group">
+                                <label for="event-statut">Statut</label>
+                                <select id="event-statut">
+                                    <option value="a_venir">À venir — visible sur le site</option>
+                                    <option value="termine">Terminé — dans l'historique</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="justify-content:flex-end;">
+                                <label class="vedette-toggle" for="event-vedette">
+                                    <input type="checkbox" id="event-vedette">
+                                    <span class="vedette-label"><i class="fas fa-star" style="color:var(--admin-warning);"></i> Mettre en vedette</span>
+                                    <span class="vedette-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aperçu en direct -->
+                    <div class="form-preview" id="form-preview">
+                        <div class="form-preview-label"><i class="fas fa-eye"></i> Aperçu sur le site</div>
+                        <div class="preview-card" id="preview-card">
+                            <div class="preview-date">
+                                <span class="p-day" id="preview-day">—</span>
+                                <span class="p-month" id="preview-month"></span>
+                            </div>
+                            <div class="preview-body">
+                                <span class="p-tag" id="preview-tag">Gratuit</span>
+                                <div class="p-title" id="preview-title">Titre de l'événement</div>
+                                <div class="p-desc" id="preview-desc"></div>
+                                <div class="p-meta" id="preview-meta"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="form-cancel">Annuler</button>
+                        <button type="submit" class="btn-primary" id="form-submit"><i class="fas fa-save"></i> Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js?v=2"></script>
+    <script src="admin.js?v=3"></script>
+</body>
+</html>

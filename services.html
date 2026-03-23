@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Logo Jessie.png">
 
     <!-- Google Analytics 4 (gtag.js) — Méthode standard et fiable -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF8XNMFQXV"></script>
@@ -32,7 +33,10 @@
     <!-- ====== HEADER / NAVIGATION ====== -->
     <header>
         <nav class="container">
-            <a href="index.html" class="logo">Jessie Bédard, T.E.S.</a>
+            <a href="index.html" class="logo">
+                <img src="Logo Jessie.png" alt="Logo Jessie Bédard" class="logo-img">
+                <span class="logo-text">Jessie Bédard, T.E.S.</span>
+            </a>
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-links">
                     <li><a href="index.html" class="nav-link">Accueil</a></li>
@@ -42,6 +46,16 @@
                     <li><a href="faq.html" class="nav-link">FAQ</a></li>
                     <li><a href="contact.html" class="nav-link cta cta-primary nav-cta">Contact</a></li>
                 </ul>
+                <div class="nav-social">
+                    <a href="https://www.facebook.com/profile.php?id=61586969765073" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@jessie.bdard.tes" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/jessiebedardtes/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="header-social">
+                <a href="https://www.facebook.com/profile.php?id=61586969765073" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@jessie.bdard.tes" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/jessiebedardtes/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
                 <i class="fas fa-bars"></i>
@@ -81,58 +95,50 @@
                     <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                         <span class="badge-new">Nouveau</span>
                         <i class="fa-solid fa-chalkboard-user service-icon"></i>
-                        <h3>Ateliers et formations</h3>
-                        <p>Des ateliers thématiques et webinaires gratuits pour les parents sur des sujets précis. Consultez le prochain événement ci-dessous !</p>
+                        <h3>Ateliers et webinaires</h3>
+                        <p>Ateliers thématiques pour les jeunes cet été et webinaires gratuits pour les parents tout au long de l'année. <a href="#webinaire" style="font-weight: 600;">Voir la programmation ci-dessous !</a></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== WEBINAIRE À LA UNE ====== -->
+        <!-- ====== ATELIERS & WEBINAIRES ====== -->
         <section class="section-default" id="webinaire">
             <div class="container" data-aos="fade-up">
-                <h2 class="section-title">Prochain webinaire gratuit</h2>
-                <p class="section-subtitle">Un événement en ligne pour mieux comprendre le TSA et obtenir des outils concrets.</p>
+                <h2 class="section-title">Ateliers et webinaires</h2>
+                <p class="section-subtitle">Des événements en ligne et en personne pour vous outiller concrètement. Inscrivez-vous gratuitement !</p>
 
-                <div class="webinaire-card">
-                    <div class="webinaire-header">
-                        <div class="webinaire-date-badge">
-                            <span class="webinaire-day">11</span>
-                            <span class="webinaire-month">Mars</span>
-                        </div>
-                        <div class="webinaire-header-info">
-                            <span class="webinaire-tag"><i class="fas fa-video"></i> Webinaire gratuit</span>
-                            <h3>Le Trouble du Spectre de l'Autisme (TSA)</h3>
-                            <p class="webinaire-meta">
-                                <span><i class="fas fa-calendar-alt"></i> Mercredi 11 mars</span>
-                                <span><i class="fas fa-clock"></i> 18h à 18h45</span>
-                                <span><i class="fas fa-user"></i> Par Jessie Bédard, T.E.S.</span>
-                            </p>
+                <!-- CONTENEUR DYNAMIQUE (chargé depuis Firestore) -->
+                <div id="events-dynamic-container" style="max-width: 800px; margin: 0 auto;">
+                    <h3 class="events-section-heading">
+                        <span class="events-heading-icon events-heading-icon--upcoming"><i class="fas fa-star"></i></span>
+                        Événements à venir
+                        <span class="events-count" id="upcoming-count"></span>
+                    </h3>
+                    <div class="events-grid" id="events-upcoming"></div>
+
+                    <div class="coming-soon-teaser">
+                        <div class="coming-soon-icon"><i class="fas fa-bell"></i></div>
+                        <h4>D'autres événements à venir !</h4>
+                        <p>De nouveaux webinaires et ateliers seront annoncés régulièrement. Suivez-moi pour ne rien manquer.</p>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/profile.php?id=61586969765073" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.tiktok.com/@jessie.bdard.tes" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                            <a href="https://www.instagram.com/jessiebedardtes/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
 
-                    <div class="webinaire-body">
-                        <p>Comme parent, vous est-il arrivé de sortir du bureau du médecin avec un diagnostic ou des suspicions pour un <strong>TSA</strong> pour votre enfant et avoir l'impression d'être laissé à vous-même ?</p>
-                        
-                        <p>Vous demeurez sans outils concrets, sans ressources d'aide ni même en ayant vraiment compris le diagnostic et ses implications concrètes dans la vie de tous les jours ?</p>
-
-                        <p><strong>Voici pourquoi ce webinaire est pour vous :</strong></p>
-                        <ul class="webinaire-checklist">
-                            <li><i class="fas fa-check-circle"></i> Offre des explications et exemples concrets</li>
-                            <li><i class="fas fa-check-circle"></i> 100% gratuit et bien vulgarisé</li>
-                            <li><i class="fas fa-check-circle"></i> Offre des outils de base clés en main</li>
-                            <li><i class="fas fa-check-circle"></i> Offre de services sans liste d'attente</li>
-                        </ul>
-
-                        <div class="webinaire-cta">
-                            <p class="webinaire-inscription">Communiquez avec moi pour vous inscrire et recevoir le lien pour vous connecter :</p>
-                            <a href="mailto:jbedard_89@hotmail.com?subject=Inscription%20Webinaire%20TSA%20-%2011%20mars" class="cta cta-primary cta-large">
-                                <i class="fas fa-envelope"></i> S'inscrire par courriel
-                            </a>
-                            <p class="webinaire-email">jbedard_89@hotmail.com</p>
-                        </div>
+                    <div class="events-past-section" id="events-history-section" style="display:none;">
+                        <h3 class="events-past-heading">
+                            <i class="fas fa-history"></i>
+                            Événements passés
+                            <span class="events-past-count" id="past-count"></span>
+                        </h3>
+                        <div class="events-past-grid" id="events-past"></div>
                     </div>
                 </div>
+
+                <!-- Le contenu statique a été retiré. Tout est géré via le portail admin. -->
             </div>
         </section>
 
@@ -274,11 +280,16 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
-                    <h4 class="footer-title">Jessie Bédard, T.E.S.</h4>
+                    <img src="Logo Jessie.png" alt="Logo Jessie Bédard, T.E.S." class="footer-logo">
                     <p>Soutenir les familles de Québec vers un quotidien plus harmonieux.</p>
                     <div class="footer-badge">
                         <i class="fa-solid fa-award"></i>
                         <span>Membre de l'A.E.E.S.Q</span>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61586969765073" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@jessie.bdard.tes" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/jessiebedardtes/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -310,5 +321,10 @@
     <script src="app.js" defer></script>
     <!-- Événements personnalisés Google Analytics -->
     <script src="firebase-init.js?v=2" defer></script>
+    <!-- Firebase SDK + chargement dynamique des événements -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js?v=2"></script>
+    <script src="events-loader.js?v=3"></script>
 </body>
 </html>

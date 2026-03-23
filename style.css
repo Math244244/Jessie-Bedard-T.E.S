@@ -33,7 +33,7 @@
 
 /* --- RESET & BASE --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; overflow-x: hidden; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; overflow-x: hidden; }
 
 body {
     font-family: var(--font-body);
@@ -41,7 +41,7 @@ body {
     line-height: 1.75;
     background-color: var(--color-bg);
     font-size: 17px;
-    padding-top: 80px;
+    padding-top: 96px;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
@@ -183,14 +183,14 @@ header {
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 1px 10px rgba(0,0,0,0.06);
     z-index: 1000;
-    height: 80px;
+    height: 96px;
     display: flex;
     align-items: center;
     transition: var(--transition);
 }
 header.scrolled {
     box-shadow: var(--shadow-md);
-    height: 72px;
+    height: 78px;
 }
 nav.container {
     display: flex;
@@ -200,18 +200,33 @@ nav.container {
     min-width: 0;
 }
 .logo {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1.4rem;
-    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
-    white-space: nowrap;
     transition: var(--transition);
     min-width: 0;
+}
+.logo-img {
+    height: 82px;
+    width: auto;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+header.scrolled .logo-img {
+    height: 60px;
+}
+.logo-text {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: var(--transition);
 }
-.logo:hover { color: var(--color-accent); }
+.logo:hover .logo-text { color: var(--color-accent); }
 .nav-links {
     display: flex;
     list-style: none;
@@ -260,6 +275,135 @@ nav.container {
     z-index: 1001;
     padding: 8px;
     flex-shrink: 0;
+}
+
+/* =============================================
+   RÉSEAUX SOCIAUX & LOGO
+   ============================================= */
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    text-decoration: none;
+}
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+/* Footer — Logo & Social */
+.footer-logo {
+    height: 75px;
+    width: auto;
+    margin-bottom: 0.75rem;
+}
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 1.25rem;
+}
+.footer-social .social-icon {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.footer-social .social-icon:hover {
+    color: var(--color-light);
+}
+.footer-social .social-icon--facebook:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.4);
+}
+.footer-social .social-icon--tiktok:hover {
+    background: #000;
+    border-color: #000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+.footer-social .social-icon--instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4);
+}
+
+/* Menu mobile — Social */
+.nav-social {
+    display: none;
+}
+
+/* Section "Retrouvez-moi" (pages spécifiques) */
+.social-connect {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: var(--color-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 0 auto;
+}
+.social-connect h4 {
+    margin-bottom: 0.5rem;
+}
+.social-connect p {
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+.social-connect .social-icons {
+    justify-content: center;
+    gap: 16px;
+}
+.social-connect .social-icon {
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+    border: 2px solid rgba(26, 188, 156, 0.15);
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+}
+.social-connect .social-icon:hover {
+    color: var(--color-light);
+}
+.social-connect .social-icon--facebook:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.35);
+}
+.social-connect .social-icon--tiktok:hover {
+    background: #000;
+    border-color: #000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.social-connect .social-icon--instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    border-color: transparent;
+    box-shadow: 0 6px 20px rgba(225, 48, 108, 0.35);
+}
+.social-connect .social-label {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 6px;
+    color: var(--color-muted);
+    font-weight: 500;
+}
+.social-connect .social-decoration {
+    font-size: 2rem;
+    color: var(--color-accent);
+    opacity: 0.2;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+.social-connect .social-icons > div {
+    text-align: center;
 }
 
 /* =============================================
@@ -824,6 +968,347 @@ section {
     font-size: 0.9rem;
     color: var(--color-muted);
     font-weight: 500;
+}
+
+/* =============================================
+   SYSTÈME D'ÉVÉNEMENTS (Ateliers & Webinaires)
+   ============================================= */
+.events-section-heading {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-accent-light);
+}
+.events-section-heading .events-heading-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+.events-heading-icon--upcoming {
+    background: var(--color-accent);
+    color: var(--color-light);
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+.events-heading-icon--past {
+    background: #e0e6ed;
+    color: var(--color-muted);
+}
+.events-count {
+    margin-left: auto;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    background: var(--color-bg);
+    padding: 4px 14px;
+    border-radius: 50px;
+}
+.events-grid {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+/* Event Card */
+.event-card {
+    display: flex;
+    background: var(--color-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    border: 2px solid #eee;
+    transition: var(--transition-slow);
+}
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-accent);
+}
+.event-date-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-light);
+    min-width: 100px;
+    text-align: center;
+}
+.event-day {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1;
+}
+.event-month {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+.event-season {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+.event-content {
+    padding: 1.5rem 2rem;
+    flex: 1;
+}
+.event-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+.event-tag--free {
+    background: rgba(26, 188, 156, 0.12);
+    color: var(--color-accent);
+}
+.event-tag--new {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: var(--color-light);
+}
+.event-tag--past {
+    background: #e0e6ed;
+    color: var(--color-muted);
+}
+.event-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+}
+.event-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.event-meta i {
+    color: var(--color-accent);
+    font-size: 0.85rem;
+}
+.event-content .event-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 1rem;
+}
+.event-content .event-list li {
+    padding: 0.35rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 0.95rem;
+    color: var(--color-dark);
+}
+.event-content .event-list li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+}
+.event-cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+/* Event card highlight (featured event) */
+.event-card--highlight {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-lg);
+}
+.event-card--highlight .event-date-col {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+}
+
+/* Past event card */
+.event-card--past {
+    opacity: 0.75;
+    border-color: #e0e6ed;
+}
+.event-card--past .event-date-col {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+}
+.event-card--past:hover {
+    opacity: 1;
+    border-color: #bdc3c7;
+}
+
+/* Coming soon teaser */
+.coming-soon-teaser {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, var(--color-accent-light), var(--color-light));
+    border: 2px dashed rgba(26, 188, 156, 0.3);
+    border-radius: var(--border-radius-lg);
+    margin: 2rem 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.coming-soon-teaser .coming-soon-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1rem;
+}
+.coming-soon-teaser h4 {
+    margin-bottom: 0.5rem;
+}
+.coming-soon-teaser p {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto 1.25rem;
+}
+.coming-soon-teaser .social-icons {
+    justify-content: center;
+    gap: 12px;
+}
+.coming-soon-teaser .social-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-light);
+    color: var(--color-accent);
+    border: 1px solid rgba(26, 188, 156, 0.2);
+    font-size: 1rem;
+}
+.coming-soon-teaser .social-icon:hover {
+    color: var(--color-light);
+}
+.coming-soon-teaser .social-icon--facebook:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+}
+.coming-soon-teaser .social-icon--tiktok:hover {
+    background: #000;
+    border-color: #000;
+}
+
+/* Events history (collapsible) */
+.events-history {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 2px solid #e0e6ed;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+}
+.events-history > summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 500;
+    color: var(--color-muted);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+.events-history > summary::-webkit-details-marker { display: none; }
+.events-history > summary:hover {
+    background: var(--color-bg);
+    color: var(--color-primary);
+}
+.events-history > summary i {
+    color: var(--color-muted);
+    font-size: 1.1rem;
+}
+.events-history > summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    transition: transform 0.3s ease;
+}
+.events-history[open] > summary::after {
+    transform: rotate(180deg);
+}
+.events-history[open] {
+    border-color: var(--color-muted);
+}
+.events-history-count {
+    background: #e0e6ed;
+    color: var(--color-muted);
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.events-history-content {
+    padding: 0 1.5rem 1.5rem;
+    display: grid;
+    gap: 1rem;
+}
+.events-history-content .event-card {
+    box-shadow: none;
+}
+
+/* Responsive events */
+@media (max-width: 600px) {
+    .event-card {
+        flex-direction: column;
+    }
+    .event-date-col {
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 1rem;
+        min-width: auto;
+    }
+    .event-day {
+        font-size: 1.6rem;
+    }
+    .event-content {
+        padding: 1.25rem 1.5rem;
+    }
+    .event-meta {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    .events-section-heading {
+        font-size: 1.2rem;
+    }
+    .coming-soon-teaser {
+        padding: 2rem 1.5rem;
+    }
 }
 
 /* Carte aperçu cliquable (page accueil) */
@@ -1953,15 +2438,22 @@ section {
     .footer-badge {
         justify-content: center;
     }
+    .footer-social {
+        justify-content: center;
+    }
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media (max-width: 768px) {
-    body { padding-top: 70px; font-size: 16px; }
-    header { height: 70px; }
+    body { padding-top: 78px; font-size: 16px; }
+    header { height: 78px; }
     section { padding: 60px 0; }
 
-    /* Logo réduit sur mobile pour laisser place au hamburger */
-    .logo { font-size: 1.15rem; }
+    .logo-img { height: 58px; }
+    .logo-text { display: none; }
 
     .nav-links { display: none; }
     .nav-menu {
@@ -1988,6 +2480,27 @@ section {
         gap: 1.5rem;
     }
     .hamburger { display: block; }
+
+    .nav-social {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+        margin-top: 0.5rem;
+    }
+    .nav-social .social-icon {
+        width: 42px;
+        height: 42px;
+        background: var(--color-accent-light);
+        color: var(--color-accent);
+        border: 1px solid rgba(26, 188, 156, 0.15);
+        font-size: 1.15rem;
+    }
+    .nav-social .social-icon:hover {
+        background: var(--color-accent);
+        color: var(--color-light);
+    }
 
     .main-services-grid,
     .issues-grid {
@@ -2087,8 +2600,7 @@ section {
     h2.section-title { font-size: 1.6rem; }
     section { padding: 50px 0; }
 
-    /* Logo encore plus petit sur très petit écran */
-    .logo { font-size: 1.05rem; }
+    .logo-img { height: 52px; }
 
     .service-card, .credential-card, .services-preview-card { padding: 2rem 1.5rem; }
 
@@ -2334,4 +2846,212 @@ section {
 @media (max-width: 480px) {
     .mailto-panel { padding: 2rem 1.5rem; }
     .mailto-copy-row { flex-direction: column; gap: 8px; }
+}
+
+/* =============================================
+   HEADER — Réseaux sociaux (desktop)
+   ============================================= */
+.header-social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 16px;
+}
+.header-social .social-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+    border: none;
+}
+.header-social .social-icon--facebook {
+    background: #1877f2;
+    color: #fff;
+}
+.header-social .social-icon--facebook:hover {
+    background: #0d65d9;
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.4);
+}
+.header-social .social-icon--tiktok {
+    background: #000;
+    color: #fff;
+}
+.header-social .social-icon--tiktok:hover {
+    background: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.header-social .social-icon--instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: #fff;
+}
+.header-social .social-icon--instagram:hover {
+    background: linear-gradient(45deg, #e6683c, #dc2743, #cc2366, #bc1888, #f09433);
+    box-shadow: 0 4px 12px rgba(225, 48, 108, 0.4);
+}
+header.scrolled .header-social .social-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+}
+
+/* =============================================
+   ÉVÉNEMENTS PASSÉS — Section visible
+   ============================================= */
+.events-past-section {
+    max-width: 800px;
+    margin: 2.5rem auto 0;
+}
+.events-past-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--color-muted);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e0e6ed;
+}
+.events-past-heading i { color: #bdc3c7; font-size: 1rem; }
+.events-past-heading .events-past-count {
+    background: #e0e6ed;
+    color: var(--color-muted);
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+.events-past-grid { display: grid; gap: 1rem; }
+
+/* =============================================
+   PAGE D'ACCUEIL — Aperçu événements
+   ============================================= */
+.events-preview-home {
+    background: linear-gradient(135deg, #f0faf7 0%, #e8f8f5 50%, #f7f3ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+.events-preview-home::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(26, 188, 156, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+.events-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.event-preview-card {
+    background: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+}
+.event-preview-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(26, 188, 156, 0.18);
+    border-color: var(--color-accent);
+}
+.event-preview-date {
+    background: linear-gradient(135deg, var(--color-accent), #16a085);
+    color: #fff;
+    text-align: center;
+    padding: 1.25rem 1rem;
+}
+.event-preview-date .day {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1;
+    display: block;
+}
+.event-preview-date .month {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+.event-preview-body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.event-preview-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(26, 188, 156, 0.1);
+    color: var(--color-accent);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+.event-preview-body h4 {
+    font-size: 1rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    flex: 1;
+}
+.event-preview-meta {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.75rem;
+}
+.event-preview-meta i { color: var(--color-accent); }
+.event-preview-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    transition: gap 0.3s;
+}
+.event-preview-card:hover .event-preview-link { gap: 10px; }
+.events-preview-static {
+    text-align: center;
+    padding: 2.5rem;
+    background: #fff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+}
+.events-preview-static i.fa-calendar-alt {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    display: block;
+}
+.events-preview-static h4 { color: var(--color-primary); margin-bottom: 0.5rem; }
+.events-preview-static p { color: var(--color-muted); }
+
+@media (max-width: 768px) {
+    .header-social { display: none; }
+    .events-preview-grid { grid-template-columns: 1fr; }
 }

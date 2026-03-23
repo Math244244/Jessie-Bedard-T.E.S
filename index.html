@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Logo Jessie.png">
 
     <!-- Google Analytics 4 (gtag.js) — Méthode standard et fiable -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF8XNMFQXV"></script>
@@ -49,7 +50,10 @@
     <!-- ====== HEADER / NAVIGATION ====== -->
     <header>
         <nav class="container">
-            <a href="index.html" class="logo">Jessie Bédard, T.E.S.</a>
+            <a href="index.html" class="logo">
+                <img src="Logo Jessie.png" alt="Logo Jessie Bédard" class="logo-img">
+                <span class="logo-text">Jessie Bédard, T.E.S.</span>
+            </a>
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-links">
                     <li><a href="index.html" class="nav-link active">Accueil</a></li>
@@ -59,6 +63,16 @@
                     <li><a href="faq.html" class="nav-link">FAQ</a></li>
                     <li><a href="contact.html" class="nav-link cta cta-primary nav-cta">Contact</a></li>
                 </ul>
+                <div class="nav-social">
+                    <a href="https://www.facebook.com/profile.php?id=61586969765073" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@jessie.bdard.tes" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/jessiebedardtes/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="header-social">
+                <a href="https://www.facebook.com/profile.php?id=61586969765073" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@jessie.bdard.tes" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/jessiebedardtes/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-menu">
                 <i class="fas fa-bars"></i>
@@ -113,6 +127,22 @@
             </div>
         </div>
 
+        <!-- ====== PROCHAINS ÉVÉNEMENTS (dynamique Firestore) ====== -->
+        <section class="section-default events-preview-home" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Prochains événements</h2>
+                <p class="section-subtitle">Webinaires gratuits et ateliers pour vous accompagner. Inscrivez-vous !</p>
+
+                <div class="events-preview-grid" id="events-home-grid"></div>
+
+                <div class="text-center">
+                    <a href="services.html#webinaire" class="cta cta-primary cta-large">
+                        <i class="fas fa-calendar-check"></i> Voir toute la programmation
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- ====== APERÇU DES SERVICES ====== -->
         <section class="section-alt section-decorated">
             <div class="container" data-aos="fade-up">
@@ -133,8 +163,8 @@
                     <a href="services.html#webinaire" class="services-preview-card services-preview-card--link" data-aos="fade-up" data-aos-delay="300">
                         <span class="badge-new-small">Nouveau</span>
                         <i class="fa-solid fa-chalkboard-user"></i>
-                        <h3>Webinaire gratuit : Le TSA</h3>
-                        <p>Mercredi 11 mars, 18h à 18h45. Explications concrètes, outils et ressources pour parents. Inscrivez-vous !</p>
+                        <h3>Ateliers et webinaires</h3>
+                        <p>Ateliers d'été pour les jeunes et 3 webinaires gratuits à venir. Consultez la programmation complète !</p>
                     </a>
                 </div>
 
@@ -267,11 +297,16 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column" data-aos="fade-up">
-                    <h4 class="footer-title">Jessie Bédard, T.E.S.</h4>
+                    <img src="Logo Jessie.png" alt="Logo Jessie Bédard, T.E.S." class="footer-logo">
                     <p>Soutenir les familles de Québec vers un quotidien plus harmonieux.</p>
                     <div class="footer-badge">
                         <i class="fa-solid fa-award"></i>
                         <span>Membre de l'A.E.E.S.Q</span>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61586969765073" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@jessie.bdard.tes" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/jessiebedardtes/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
@@ -304,5 +339,10 @@
     <script src="app.js" defer></script>
     <!-- Événements personnalisés Google Analytics -->
     <script src="firebase-init.js?v=2" defer></script>
+    <!-- Firebase SDK + chargement dynamique des événements -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js?v=2"></script>
+    <script src="events-loader.js?v=3"></script>
 </body>
 </html>

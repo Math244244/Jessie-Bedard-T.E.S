@@ -39,7 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 3. Suivre les clics sur le lien du webinaire ---
+    // --- 3. Suivre les clics sur les réseaux sociaux ---
+    document.querySelectorAll('.social-icon').forEach(link => {
+        link.addEventListener('click', () => {
+            const platform = link.getAttribute('aria-label') || 'inconnu';
+            gtag('event', 'clic_reseau_social', {
+                plateforme: platform,
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        });
+    });
+
+    // --- 4. Suivre les clics sur le lien du webinaire ---
     document.querySelectorAll('a[href*="webinaire"], a[href*="#webinaire"]').forEach(link => {
         link.addEventListener('click', () => {
             gtag('event', 'clic_webinaire', {
